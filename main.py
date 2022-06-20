@@ -1,6 +1,5 @@
 import math
-
-print('┌──────────────────────── Input ──────────────────────────┐')
+from zipapp import get_interpreter
 
 def get_input() -> float:
     total_match = input("├ Total Match:          ").replace('%', '')
@@ -20,18 +19,22 @@ def calculate(total_match, wanted_winrate, current_winrate) -> float:
     current_win = (total_match*current_winrate)/100
     needed_match = ((100*current_win) - (wanted_winrate*total_match))/(wanted_winrate-100)
     estimate_win = needed_match+(needed_match*(current_winrate/100))
+    
+    return current_win, needed_match, estimate_win
 
-def print_value()
-print('├────────────────────── Summerize ────────────────────────┤')
-print(f'├ Total Match:          {int(total_match):,}')
-print(f'├ Current Winrate:      {current_winrate}%')
-print(f'├ Wanted Winrate:       {wanted_winrate}%')
-print('├───────────────────── Calculation ───────────────────────┤')
-print(f'├ Needed Win:           {int(math.ceil(needed_match))}')
-print(f'├ Estimate Match:       {int(math.ceil(estimate_win))}')
-print(f'├ Estimate Time (min):  {int(needed_match*15)}/{int(estimate_win*15)}')
-print('└─────────────────────────────────────────────────────────┘')
+def print_value(total_match, current_winrate, wanted_winrate, estimate_win, needed_match):
+    print('├────────────────────── Summerize ────────────────────────┤')
+    print(f'├ Total Match:          {int(total_match):,}')
+    print(f'├ Current Winrate:      {current_winrate}%')
+    print(f'├ Wanted Winrate:       {wanted_winrate}%')
+    print('├───────────────────── Calculation ───────────────────────┤')
+    print(f'├ Needed Win:           {int(math.ceil(needed_match))}')
+    print(f'├ Estimate Match:       {int(math.ceil(estimate_win))}')
+    print(f'├ Estimate Time (min):  {int(needed_match*15)}/{int(estimate_win*15)}')
+    print('└─────────────────────────────────────────────────────────┘')
 
-
-
-
+if __name__ == "__main__":
+    print('┌──────────────────────── Input ──────────────────────────┐')
+    total_match, current_winrate, wanted_winrate = get_input()
+    current_win , needed_match, estimate_win = calculate(total_match, current_winrate, wanted_winrate)
+    print_value(total_match, current_winrate, wanted_winrate, estimate_win, needed_match)
