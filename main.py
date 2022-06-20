@@ -10,16 +10,19 @@ def get_input() -> float:
     current_winrate = float(current_winrate)
     wanted_winrate = float(wanted_winrate)
 
-    if not total_match < 0.0 or current_winrate < 0.0 or wanted_winrate < 0.0:
+    if total_match != 0.0 or current_winrate != 0.0 or wanted_winrate != 0.0:
+        #print(total_match, current_winrate, wanted_winrate)
         return total_match, current_winrate, wanted_winrate
 
-    print("Value can't be lower than 0, canceling")
+    print("Value can't be lower than 0, canceling\n")
 
 def calculate(total_match, wanted_winrate, current_winrate) -> float:
     current_win = (total_match*current_winrate)/100
     needed_match = ((100*current_win) - (wanted_winrate*total_match))/(wanted_winrate-100)
     estimate_win = needed_match+(needed_match*(current_winrate/100))
     
+    #print(current_win, needed_match, estimate_win)
+
     return current_win, needed_match, estimate_win
 
 def print_value(total_match, current_winrate, wanted_winrate, estimate_win, needed_match):
@@ -30,11 +33,11 @@ def print_value(total_match, current_winrate, wanted_winrate, estimate_win, need
     print('├───────────────────── Calculation ───────────────────────┤')
     print(f'├ Needed Win:           {int(math.ceil(needed_match))}')
     print(f'├ Estimate Match:       {int(math.ceil(estimate_win))}')
-    print(f'├ Estimate Time (min):  {int(needed_match*15)}/{int(estimate_win*15)}')
+    print(f'├ Estimate Time (min):  {int(needed_match*15)}~{int(estimate_win*15)}')
     print('└─────────────────────────────────────────────────────────┘')
 
 if __name__ == "__main__":
     print('┌──────────────────────── Input ──────────────────────────┐')
     total_match, current_winrate, wanted_winrate = get_input()
-    current_win , needed_match, estimate_win = calculate(total_match, current_winrate, wanted_winrate)
+    current_win , needed_match, estimate_win = calculate(total_match,wanted_winrate, current_winrate)
     print_value(total_match, current_winrate, wanted_winrate, estimate_win, needed_match)
