@@ -1,5 +1,4 @@
 import math
-from zipapp import get_interpreter
 
 def get_input() -> float:
     total_match = input("├ Total Match:          ").replace('%', '')
