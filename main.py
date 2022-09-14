@@ -13,7 +13,7 @@ def get_input() -> float:
         #print(total_match, current_winrate, wanted_winrate)
         return total_match, current_winrate, wanted_winrate
 
-    print("Value can't be lower than 0, canceling\n")
+    print("Values can't be lower than 0, canceling\n")
 
 def calculate(total_match, wanted_winrate, current_winrate) -> float:
     current_win = (total_match*current_winrate)/100
