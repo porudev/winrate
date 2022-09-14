@@ -5,7 +5,7 @@ def get_input() -> float:
     current_winrate = input("├ Current winrate:      ").replace('%', '')
     wanted_winrate = input("├ Wanted Winrate:       ").replace('%', '')
 
-    total_match = float(total_match)
+    total_match = int(total_match)
     current_winrate = float(current_winrate)
     wanted_winrate = float(wanted_winrate)
 
